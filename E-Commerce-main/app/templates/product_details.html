@@ -1,0 +1,207 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.product_name }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{ product.product_picture }}" class="img-fluid" alt="{{ product.product_name }}">
+            </div>
+            <div class="col-md-6">
+                <h2>{{ product.product_name }}</h2>
+                <p>{{ product.description }}</p>
+                <p><strong>Price:</strong> ${{ product.current_price }} <del>${{ product.previous_price }}</del></p>
+                <p><strong>Color:</strong> {{ product.color }}</p>
+                <p><strong>Rating:</strong> ⭐ {{ product.rating }}/5</p>
+                <p><strong>Available Sizes:</strong>
+                    {% if product.size_small > 0 %} S {% endif %}
+                    {% if product.size_medium > 0 %} M {% endif %}
+                    {% if product.size_large > 0 %} L {% endif %}
+                </p>
+                <a href="{{ url_for('index.html') }}" class="btn btn-secondary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>{{ product.product_name }}</title>
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+ 
+     <style>
+         body {
+             background-color: #f5f5f5;
+         }
+         .navbar {
+             background-color: #262626;
+         }
+         .btn-custom {
+             background-color: #c4877a;
+             color: white;
+         }
+         .product-card {
+             background-color: white;
+             border-radius: 10px;
+             padding: 30px;
+             max-width: 1100px; /* Increased width */
+             margin: auto; /* Center it */
+             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+         }
+ 
+         .recommended-card {
+             margin-bottom: 30px;
+             background-color: white;
+             border-radius: 8px;
+             padding: 15px;
+             text-align: center;
+             box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+             height: 250px; /* Increased height */
+             display: flex;
+             align-items: center;
+             justify-content: center;
+         }
+ 
+         .product-image {
+             max-height: 400px;
+             object-fit: cover;
+             border-radius: 8px;
+         }
+ 
+         .product-info {
+             margin-left: 30px;
+         }
+ 
+         .price-section {
+             margin-top: 20px;
+         }
+ 
+         .rating-section {
+             margin-top: 20px;
+         }
+ 
+         .size-section {
+             margin-top: 20px;
+         }
+ 
+         .quantity-section {
+             margin-top: 20px;
+         }
+ 
+         .sale-section {
+             margin-top: 20px;
+         }
+ 
+         .add-to-cart-btn {
+             margin-top: 30px;
+         }
+     </style>
+ </head>
+ <body>
+     {% include 'navbar.html' %}
+ 
+     {% block content %}
+     <div class="container mt-5">
+         <!-- Product Details -->
+         <div class="row">
+             <div class="col-12">
+                 <div class="product-card">
+                     <h1 class="text-center mb-4">{{ product.product_name }}</h1>
+                     <div class="row">
+                         <div class="col-md-6">
+                             <img src="{{ product.product_picture }}" alt="{{ product.product_name }}" class="img-fluid product-image">
+                         </div>
+                         <div class="col-md-6 product-info">
+                             <h5>Description:</h5>
+                             <p>{{ product.description }}</p>
+ 
+                             <div class="price-section">
+                                 <h5>Price:</h5>
+                                 <p><strong>${{ "%.2f"|format(product.current_price) }}</strong></p>
+                                 <h5>Previous Price:</h5>
+                                 <p><del>${{ "%.2f"|format(product.previous_price) }}</del></p>
+                             </div>
+ 
+                             <div class="rating-section">
+                                 <h5>Rating:</h5>
+                                 <p>{{ product.rating }} ⭐</p>
+                             </div>
+ 
+                             <div class="category-section">
+                                 <h5>Category:</h5>
+                                 <p>{{ product.category }}</p>
+                             </div>
+ 
+                             <div class="color-section">
+                                 <h5>Color:</h5>
+                                 <p>{{ product.color }}</p>
+                             </div>
+ 
+                             <div class="size-section">
+                                 <h5>Sizes Available:</h5>
+                                 <p>
+                                     Small: {{ product.size_small }}, 
+                                     Medium: {{ product.size_medium }}, 
+                                     Large: {{ product.size_large }}
+                                 </p>
+                             </div>
+ 
+                             <div class="quantity-section">
+                                 <h5>Quantity:</h5>
+                                 <p>{{ product.quantity }}</p>
+                             </div>
+ 
+                             <div class="sale-section">
+                                 <h5>Sale:</h5>
+                                 <p>
+                                     <span class="badge {% if product.sale %}bg-success{% else %}bg-secondary{% endif %}">
+                                         {% if product.sale %}On Sale{% else %}Not on Sale{% endif %}
+                                     </span>
+                                 </p>
+                             </div>
+ 
+                             <div class="add-to-cart-btn">
+                                 <a href="#" class="btn btn-custom">Add to Cart</a>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+ 
+         <!-- Recommended Products Section -->
+         <div class="row mt-4">
+             <h3 class="text-center">Recommended Products</h3>
+             <div class="col-md-4">
+                 <div class="recommended-card">Recommended Product 1</div>
+             </div>
+             <div class="col-md-4">
+                 <div class="recommended-card">Recommended Product 2</div>
+             </div>
+             <div class="col-md-4">
+                 <div class="recommended-card">Recommended Product 3</div>
+             </div>
+         </div>
+     </div>
+     {% endblock %}    
+ 
+     {% include 'footer.html' %}
+     <!-- Bootstrap JS -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+ </body>
+ </html>

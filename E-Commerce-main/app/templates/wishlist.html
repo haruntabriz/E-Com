@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Your Wishlist</h1>
+    <div class="product-container">
+        {% for product in products %}
+            <div class="product-card">
+                <img src="{{ url_for('static', filename='images/' + product.product_picture) }}" 
+                     alt="{{ product.product_name }}" width="150">
+                <h2>
+                    <a href="{{ url_for('views.product_detail', product_id=product.id) }}">
+                        {{ product.product_name }}
+                    </a>
+                </h2>
+                <p>Price: ${{ product.current_price }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

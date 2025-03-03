@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FASHION FINDS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    {% block content %}
+ <!-- slader containers     -->
+
+    <section class="responsive-slider">
+        <div class="slider-container">
+            <div class="slider-track">
+                <div class="slide">
+                    <img src="{{url_for('static',filename='images/slaider img1.png')}}" alt="Nature" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="{{url_for('static',filename='images/slaider img2.png')}}" alt="Mountain" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="{{url_for('static',filename='images/slaider img4.png')}}" alt="Ocean" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="{{url_for('static',filename='images/slaider img2.png')}}" alt="Forest" loading="lazy">
+                </div>
+            </div>
+        </div>
+        <button class="arrow-btn prev-btn" aria-label="Previous slide">◀</button>
+        <button class="arrow-btn next-btn" aria-label="Next slide">▶</button>
+        <div class="slider-controls"></div>
+    </section>    
+
+
+<!-- 1st contener -->
+
+<div class="container">
+    <!-- Card 1 -->
+    <div class="card">
+        <div class="card-image">
+            <img src="{{url_for('static',filename='images/contenar img5.png')}}" alt="Product">
+        </div>
+        <div class="card-content">
+            <div class="brand-name">DEELMO</div>
+            <div class="offer-text">Up to 60% Off</div>
+            <button class="view-btn" onclick="window.location.href='products.html?brand=deelmo'">View Offer</button>
+        </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+        <div class="card-image">
+            <img src="{{url_for('static',filename='images/contenar img4.png')}}" alt="Product">
+        </div>
+        <div class="card-content">
+            <div class="brand-name">PUMA</div>
+            <div class="offer-text">Up to 50% Off</div>
+            <button class="view-btn" onclick="window.location.href='products.html?brand=deelmo'">View Offer</button>
+        </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+        <div class="card-image">
+            <img src="{{url_for('static',filename='images/contenar img3.png')}}" alt="Product">
+        </div>
+        <div class="card-content">
+            <div class="brand-name">ADIDAS</div>
+            <div class="offer-text">Up to 55% Off</div>
+            <button class="view-btn" onclick="window.location.href='products.html?brand=deelmo'">View Offer</button>
+        </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card">
+        <div class="card-image">
+            <img src="{{url_for('static',filename='images/contenar img2.png')}}" alt="Product">
+        </div>
+        <div class="card-content">
+            <div class="brand-name">NIKE</div>
+            <div class="offer-text">Up to 65% Off</div>
+            <button class="view-btn" onclick="window.location.href='products.html?brand=deelmo'">View Offer</button>
+        </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="card">
+        <div class="card-image">
+            <img src="{{url_for('static',filename='images/contenar img1.png')}}" alt="Product">
+        </div>
+        <div class="card-content">
+            <div class="brand-name">ZARA</div>
+            <div class="offer-text">Up to 70% Off</div>
+            <button class="view-btn" onclick="window.location.href='products.html?brand=deelmo'">View Offer</button>
+        </div>
+    </div>
+</div>
+
+<!-- 2nd contener -->
+
+<div class="container" id="product-list">
+    <!-- Product Cards will be injected here dynamically -->
+</div>
+
+<!-- Wishlist Tab -->
+<div class="wishlist-tab" id="wishlist-tab">
+    <h2>Wishlist</h2>
+    <div id="wishlist-items"></div>
+    <button class="close-btn" onclick="toggleWishlist()">Close</button>
+</div>
+
+
+
+<!-- card 3 section -->
+<div class="product-container">
+    <!-- Repeated 5 times -->
+    <a href="product1.html" class="product-card">
+        <img src="{{url_for('static',filename='images/contenar img16.png')}}" alt="Wireless Headphones" class="product-image">
+        <div class="discount-badge">20% OFF</div>
+        <div class="product-info">
+            <h3 class="product-title">Wireless Bluetooth Headphones</h3>
+            <div class="price-container">
+                <span class="discounted-price">$59.99</span>
+                <span class="original-price">$74.99</span>
+            </div>
+            <p class="delivery-message">Free Next-Day Delivery</p>
+        </div>
+    </a>
+    <a href="product2.html" class="product-card">
+        <img src="{{url_for('static',filename='images/contenar img15.png')}}" alt="Smart Watch" class="product-image">
+        <div class="discount-badge">30% OFF</div>
+        <div class="product-info">
+            <h3 class="product-title">Smart Watch Fitness Tracker</h3>
+            <div class="price-container">
+                <span class="discounted-price">$139.30</span>
+                <span class="original-price">$199.00</span>
+            </div>
+            <p class="delivery-message">Free 2-Day Delivery</p>
+        </div>
+    </a>
+    <a href="product3.html" class="product-card">
+        <img src="{{url_for('static',filename='images/contenar img14.png')}}" alt="Running Shoes" class="product-image">
+        <div class="discount-badge">25% OFF</div>
+        <div class="product-info">
+            <h3 class="product-title">Men's Running Sports Shoes</h3>
+            <div class="price-container">
+                <span class="discounted-price">$67.50</span>
+                <span class="original-price">$90.00</span>
+            </div>
+            <p class="delivery-message">Standard Delivery</p>
+        </div>
+    </a>
+    <a href="product4.html" class="product-card">
+        <img src="{{url_for('static',filename='images/contenar img12.png')}}" alt="Bluetooth Speaker" class="product-image">
+        <div class="discount-badge">15% OFF</div>
+        <div class="product-info">
+            <h3 class="product-title">Portable Bluetooth Speaker</h3>
+            <div class="price-container">
+                <span class="discounted-price">$84.15</span>
+                <span class="original-price">$99.00</span>
+            </div>
+            <p class="delivery-message">Express Delivery Available</p>
+        </div>
+    </a>
+    <a href="product5.html" class="product-card">
+        <img src="{{url_for('static',filename='images/contenar img13.png')}}" alt="Gaming Mouse" class="product-image">
+        <div class="discount-badge">10% OFF</div>
+        <div class="product-info">
+            <h3 class="product-title">Wireless Gaming Mouse</h3>
+            <div class="price-container">
+                <span class="discounted-price">$45.00</span>
+                <span class="original-price">$50.00</span>
+            </div>
+            <p class="delivery-message">Same-Day Delivery Available</p>
+        </div>
+    </a>
+</div>
+{% endblock %}    
+
+{% include 'footer.html'%}
+
+
+    <script src="{{url_for('static',filename='script1.js')}}"></script>
+</body>
+</html>

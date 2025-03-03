@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ category_name }} Products</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">{{ category_name }} Products</h1>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% if products %}
+                {% for product in products %}
+                    <div class="col">
+                        <div class="card h-100">
+                            <!-- Product Image -->
+                            <img src="{{ product.product_picture }}" alt="{{ product.product_name }}" class="card-img-top" style="height: 150px; object-fit: cover;">
+                            <div class="card-body d-flex flex-column">
+                                <!-- Product Name -->
+                                <h5 class="card-title">{{ product.product_name }}</h5>
+                                <!-- Product Description -->
+                                <p class="card-text flex-grow-1">{{ product.description }}</p>
+                                <!-- Price -->
+                                <p class="card-text"><strong>Price:</strong> inr{{ "%.2f"|format(product.current_price) }}</p>
+                                <!-- Sale Status -->
+                                <p class="card-text">
+                                    <span class="badge {% if product.sale %}bg-success{% else %}bg-secondary{% endif %}">
+                                        {% if product.sale %}On Sale{% else %}Not on Sale{% endif %}
+                                    </span>
+                                </p>
+                                <!-- View Details Button -->
+                                <a href="#" class="btn btn-primary mt-auto">View Product</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No products available in this category.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
